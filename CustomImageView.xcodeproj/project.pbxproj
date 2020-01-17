@@ -8,12 +8,24 @@
 
 /* Begin PBXBuildFile section */
 		63DF508C23D09ADD009486D5 /* CustomImageView.h in Headers */ = {isa = PBXBuildFile; fileRef = 63DF508A23D09ADD009486D5 /* CustomImageView.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		63DF509323D09B85009486D5 /* CustomImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63DF509223D09B85009486D5 /* CustomImageView.swift */; };
+		63DF509523D09BB5009486D5 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63DF509423D09BB5009486D5 /* CoreDataStack.swift */; };
+		63DF509723D09C38009486D5 /* CIVImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63DF509623D09C38009486D5 /* CIVImage.swift */; };
+		63DF509923D09C5E009486D5 /* URL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63DF509823D09C5E009486D5 /* URL.swift */; };
+		63DF50A023D09D13009486D5 /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 63DF509F23D09D13009486D5 /* Media.xcassets */; };
+		63DF50B923D1580D009486D5 /* CustomImageView.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 63DF50B723D1580D009486D5 /* CustomImageView.xcdatamodeld */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		63DF508723D09ADD009486D5 /* CustomImageView.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CustomImageView.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		63DF508A23D09ADD009486D5 /* CustomImageView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CustomImageView.h; sourceTree = "<group>"; };
 		63DF508B23D09ADD009486D5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		63DF509223D09B85009486D5 /* CustomImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomImageView.swift; sourceTree = "<group>"; };
+		63DF509423D09BB5009486D5 /* CoreDataStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
+		63DF509623D09C38009486D5 /* CIVImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CIVImage.swift; sourceTree = "<group>"; };
+		63DF509823D09C5E009486D5 /* URL.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = URL.swift; sourceTree = "<group>"; };
+		63DF509F23D09D13009486D5 /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Media.xcassets; sourceTree = "<group>"; };
+		63DF50B823D1580D009486D5 /* CustomImageView.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CustomImageView.xcdatamodel; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -46,10 +58,40 @@
 		63DF508923D09ADD009486D5 /* CustomImageView */ = {
 			isa = PBXGroup;
 			children = (
+				63DF509E23D09CEC009486D5 /* Resources */,
+				63DF509B23D09C8B009486D5 /* Models */,
+				63DF509A23D09C72009486D5 /* Extensions */,
 				63DF508A23D09ADD009486D5 /* CustomImageView.h */,
 				63DF508B23D09ADD009486D5 /* Info.plist */,
+				63DF509423D09BB5009486D5 /* CoreDataStack.swift */,
+				63DF509223D09B85009486D5 /* CustomImageView.swift */,
 			);
 			path = CustomImageView;
+			sourceTree = "<group>";
+		};
+		63DF509A23D09C72009486D5 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				63DF509823D09C5E009486D5 /* URL.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		63DF509B23D09C8B009486D5 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				63DF509623D09C38009486D5 /* CIVImage.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		63DF509E23D09CEC009486D5 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				63DF509F23D09D13009486D5 /* Media.xcassets */,
+				63DF50B723D1580D009486D5 /* CustomImageView.xcdatamodeld */,
+			);
+			path = Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -95,6 +137,7 @@
 				TargetAttributes = {
 					63DF508623D09ADD009486D5 = {
 						CreatedOnToolsVersion = 11.3.1;
+						LastSwiftMigration = 1130;
 					};
 				};
 			};
@@ -121,6 +164,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				63DF50A023D09D13009486D5 /* Media.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -131,6 +175,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				63DF509323D09B85009486D5 /* CustomImageView.swift in Sources */,
+				63DF509723D09C38009486D5 /* CIVImage.swift in Sources */,
+				63DF509523D09BB5009486D5 /* CoreDataStack.swift in Sources */,
+				63DF50B923D1580D009486D5 /* CustomImageView.xcdatamodeld in Sources */,
+				63DF509923D09C5E009486D5 /* URL.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -260,6 +309,7 @@
 		63DF509023D09ADD009486D5 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = A8UX99CMMW;
@@ -276,14 +326,16 @@
 				PRODUCT_BUNDLE_IDENTIFIER = Kauts.CustomImageView;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 2;
 			};
 			name = Debug;
 		};
 		63DF509123D09ADD009486D5 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = A8UX99CMMW;
@@ -301,7 +353,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 2;
 			};
 			name = Release;
 		};
@@ -327,6 +379,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		63DF50B723D1580D009486D5 /* CustomImageView.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				63DF50B823D1580D009486D5 /* CustomImageView.xcdatamodel */,
+			);
+			currentVersion = 63DF50B823D1580D009486D5 /* CustomImageView.xcdatamodel */;
+			path = CustomImageView.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 63DF507E23D09ADC009486D5 /* Project object */;
 }
