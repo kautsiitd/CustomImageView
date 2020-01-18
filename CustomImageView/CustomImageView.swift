@@ -17,11 +17,6 @@ public class CustomImageView: UIImageView {
         var image: UIImage
         let source: Source
     }
-    let context: NSManagedObjectContext = {
-        let context = NSManagedObjectContext(concurrencyType: .privateQueueConcurrencyType)
-        context.parent = CoreDataStack.shared.persistentContainer.viewContext
-        return context
-    }()
     private var urlString = ""
     
     //MARK: Elements
@@ -47,6 +42,17 @@ public class CustomImageView: UIImageView {
 
 //MARK:- Available Functions
 extension CustomImageView {
+    public static func saveAllData() {
+        CoreDataStack.shared.save()
+    }
+    
+    public static func clearOldData() {
+        let context = CoreDataStack.shared.CIVContext
+        let imageDeleteRequest = CIVImage.deleteAll()
+        _ = try? context.execute(imageDeleteRequest)
+        imageCache.removeAllObjects()
+    }
+    
     public func setImage(with url: URL?) {
         setImage(with: url?.absoluteString)
     }

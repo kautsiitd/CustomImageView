@@ -12,7 +12,7 @@ import CoreData
 extension CustomImageView {
     func fetchCoreImage(with urlString: String,
                         completion: @escaping (ImageData) -> Void) {
-        if let coreImage = getCoreImage(with: urlString) {
+        if shouldPersist, let coreImage = getCoreImage(with: urlString) {
             let imageData = ImageData(urlString: urlString,
                                       image: coreImage, source: .core)
             completion(imageData)
@@ -32,6 +32,7 @@ extension CustomImageView {
         let predicate = NSPredicate(format: "urlString == %@", urlString)
         request.predicate = predicate
         request.fetchLimit = 1
+        let context = CoreDataStack.shared.CIVContext
         guard let coreImage = try? context.fetch(request).first,
             let coreImageData = coreImage.data as Data?,
             let uiImage = UIImage(data: coreImageData) else {
@@ -41,6 +42,7 @@ extension CustomImageView {
     }
     
     private func save(_ imageData: ImageData) {
+        let context = CoreDataStack.shared.CIVContext
         let coreImage = CIVImage(context: context)
         coreImage.urlString = imageData.urlString
         coreImage.data = imageData.image.pngData() as NSData?

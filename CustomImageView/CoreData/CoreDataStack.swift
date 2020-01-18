@@ -34,6 +34,14 @@ class CoreDataStack {
         })
         return container
     }()
+    
+    lazy var CIVContext: NSManagedObjectContext = {
+        //FIXME: privateQueueConcurrencyType not working with deletion
+//        let context = NSManagedObjectContext(concurrencyType: .privateQueueConcurrencyType)
+//        context.parent = persistentContainer.viewContext
+//        return context
+        return persistentContainer.viewContext
+    }()
 }
 
 extension CoreDataStack {
