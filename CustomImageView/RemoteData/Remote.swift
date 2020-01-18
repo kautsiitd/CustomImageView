@@ -20,12 +20,12 @@ extension CustomImageView {
         let session = URLSession.shared
         session.dataTask(with: url, completionHandler: {
             data, response, error in
-            if let data = data,
-                let remoteImage = UIImage(data: data) {
-                imageData.image = remoteImage
-                completion(imageData)
-                return
+            guard let data = data,
+                let remoteImage = UIImage(data: data) else {
+                    completion(imageData)
+                    return
             }
+            imageData.image = remoteImage
             completion(imageData)
         }).resume()
     }

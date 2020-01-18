@@ -58,10 +58,13 @@ extension CustomImageView {
     }
     
     public func setImage(with urlString: String?) {
-        guard let urlString = urlString else { return }
+        guard let urlString = urlString else {
+            image = #imageLiteral(resourceName: "NoImage.png")
+            return
+        }
         self.urlString = urlString
-        loader.startAnimating()
         
+        loader.startAnimating()
         DispatchQueue.global(qos: .userInteractive).async {
             [weak self] in
             guard let self = self else { return }
