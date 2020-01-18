@@ -7,16 +7,23 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6326888323D2E83700ED9E22 /* Core.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6326888223D2E83700ED9E22 /* Core.swift */; };
+		6326888623D2EAC900ED9E22 /* Remote.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6326888523D2EAC900ED9E22 /* Remote.swift */; };
+		6326888923D317EF00ED9E22 /* Cache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6326888823D317EF00ED9E22 /* Cache.swift */; };
 		63DF508C23D09ADD009486D5 /* CustomImageView.h in Headers */ = {isa = PBXBuildFile; fileRef = 63DF508A23D09ADD009486D5 /* CustomImageView.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		63DF509323D09B85009486D5 /* CustomImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63DF509223D09B85009486D5 /* CustomImageView.swift */; };
 		63DF509523D09BB5009486D5 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63DF509423D09BB5009486D5 /* CoreDataStack.swift */; };
 		63DF509723D09C38009486D5 /* CIVImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63DF509623D09C38009486D5 /* CIVImage.swift */; };
 		63DF509923D09C5E009486D5 /* URL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63DF509823D09C5E009486D5 /* URL.swift */; };
-		63DF50A023D09D13009486D5 /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 63DF509F23D09D13009486D5 /* Media.xcassets */; };
-		63DF50B923D1580D009486D5 /* CustomImageView.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 63DF50B723D1580D009486D5 /* CustomImageView.xcdatamodeld */; };
+		63DF50A023D09D13009486D5 /* CIV.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 63DF509F23D09D13009486D5 /* CIV.xcassets */; };
+		63DF50B923D1580D009486D5 /* CIV.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 63DF50B723D1580D009486D5 /* CIV.xcdatamodeld */; };
+		63DF50BC23D1681E009486D5 /* UIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63DF50BB23D1681E009486D5 /* UIImage.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		6326888223D2E83700ED9E22 /* Core.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Core.swift; sourceTree = "<group>"; };
+		6326888523D2EAC900ED9E22 /* Remote.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Remote.swift; sourceTree = "<group>"; };
+		6326888823D317EF00ED9E22 /* Cache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cache.swift; sourceTree = "<group>"; };
 		63DF508723D09ADD009486D5 /* CustomImageView.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CustomImageView.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		63DF508A23D09ADD009486D5 /* CustomImageView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CustomImageView.h; sourceTree = "<group>"; };
 		63DF508B23D09ADD009486D5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -24,8 +31,9 @@
 		63DF509423D09BB5009486D5 /* CoreDataStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
 		63DF509623D09C38009486D5 /* CIVImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CIVImage.swift; sourceTree = "<group>"; };
 		63DF509823D09C5E009486D5 /* URL.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = URL.swift; sourceTree = "<group>"; };
-		63DF509F23D09D13009486D5 /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Media.xcassets; sourceTree = "<group>"; };
+		63DF509F23D09D13009486D5 /* CIV.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = CIV.xcassets; sourceTree = "<group>"; };
 		63DF50B823D1580D009486D5 /* CustomImageView.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CustomImageView.xcdatamodel; sourceTree = "<group>"; };
+		63DF50BB23D1681E009486D5 /* UIImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImage.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -39,6 +47,33 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		6326888123D2E42E00ED9E22 /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				63DF509423D09BB5009486D5 /* CoreDataStack.swift */,
+				63DF50B723D1580D009486D5 /* CIV.xcdatamodeld */,
+				63DF509623D09C38009486D5 /* CIVImage.swift */,
+				6326888223D2E83700ED9E22 /* Core.swift */,
+			);
+			path = CoreData;
+			sourceTree = "<group>";
+		};
+		6326888423D2EAB600ED9E22 /* RemoteData */ = {
+			isa = PBXGroup;
+			children = (
+				6326888523D2EAC900ED9E22 /* Remote.swift */,
+			);
+			path = RemoteData;
+			sourceTree = "<group>";
+		};
+		6326888723D317DA00ED9E22 /* CacheData */ = {
+			isa = PBXGroup;
+			children = (
+				6326888823D317EF00ED9E22 /* Cache.swift */,
+			);
+			path = CacheData;
+			sourceTree = "<group>";
+		};
 		63DF507D23D09ADC009486D5 = {
 			isa = PBXGroup;
 			children = (
@@ -58,12 +93,13 @@
 		63DF508923D09ADD009486D5 /* CustomImageView */ = {
 			isa = PBXGroup;
 			children = (
+				6326888723D317DA00ED9E22 /* CacheData */,
+				6326888123D2E42E00ED9E22 /* CoreData */,
+				6326888423D2EAB600ED9E22 /* RemoteData */,
 				63DF509E23D09CEC009486D5 /* Resources */,
-				63DF509B23D09C8B009486D5 /* Models */,
 				63DF509A23D09C72009486D5 /* Extensions */,
 				63DF508A23D09ADD009486D5 /* CustomImageView.h */,
 				63DF508B23D09ADD009486D5 /* Info.plist */,
-				63DF509423D09BB5009486D5 /* CoreDataStack.swift */,
 				63DF509223D09B85009486D5 /* CustomImageView.swift */,
 			);
 			path = CustomImageView;
@@ -73,23 +109,15 @@
 			isa = PBXGroup;
 			children = (
 				63DF509823D09C5E009486D5 /* URL.swift */,
+				63DF50BB23D1681E009486D5 /* UIImage.swift */,
 			);
 			path = Extensions;
-			sourceTree = "<group>";
-		};
-		63DF509B23D09C8B009486D5 /* Models */ = {
-			isa = PBXGroup;
-			children = (
-				63DF509623D09C38009486D5 /* CIVImage.swift */,
-			);
-			path = Models;
 			sourceTree = "<group>";
 		};
 		63DF509E23D09CEC009486D5 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				63DF509F23D09D13009486D5 /* Media.xcassets */,
-				63DF50B723D1580D009486D5 /* CustomImageView.xcdatamodeld */,
+				63DF509F23D09D13009486D5 /* CIV.xcassets */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -164,7 +192,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				63DF50A023D09D13009486D5 /* Media.xcassets in Resources */,
+				63DF50A023D09D13009486D5 /* CIV.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -176,10 +204,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				63DF509323D09B85009486D5 /* CustomImageView.swift in Sources */,
+				63DF50BC23D1681E009486D5 /* UIImage.swift in Sources */,
 				63DF509723D09C38009486D5 /* CIVImage.swift in Sources */,
+				6326888323D2E83700ED9E22 /* Core.swift in Sources */,
+				6326888623D2EAC900ED9E22 /* Remote.swift in Sources */,
 				63DF509523D09BB5009486D5 /* CoreDataStack.swift in Sources */,
-				63DF50B923D1580D009486D5 /* CustomImageView.xcdatamodeld in Sources */,
+				63DF50B923D1580D009486D5 /* CIV.xcdatamodeld in Sources */,
 				63DF509923D09C5E009486D5 /* URL.swift in Sources */,
+				6326888923D317EF00ED9E22 /* Cache.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -381,13 +413,13 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
-		63DF50B723D1580D009486D5 /* CustomImageView.xcdatamodeld */ = {
+		63DF50B723D1580D009486D5 /* CIV.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
 				63DF50B823D1580D009486D5 /* CustomImageView.xcdatamodel */,
 			);
 			currentVersion = 63DF50B823D1580D009486D5 /* CustomImageView.xcdatamodel */;
-			path = CustomImageView.xcdatamodeld;
+			path = CIV.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};

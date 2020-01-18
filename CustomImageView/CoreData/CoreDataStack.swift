@@ -21,10 +21,11 @@ class CoreDataStack {
     
     //MARK: Available
     lazy var persistentContainer: NSPersistentContainer = {
-        let momdName = "CustomImageView"
-        let modelURL = Bundle(for: type(of: self)).url(forResource: momdName, withExtension:"momd")!
-        let mom = NSManagedObjectModel(contentsOf: modelURL)!
-        let container = NSPersistentContainer(name: momdName, managedObjectModel: mom)
+        let coreDataName = "CIV"
+        let bundle = Bundle(for: type(of: self))
+        let modelURL = bundle.url(forResource: coreDataName, withExtension:"momd")!
+        let model = NSManagedObjectModel(contentsOf: modelURL)!
+        let container = NSPersistentContainer(name: coreDataName, managedObjectModel: model)
         container.loadPersistentStores(completionHandler: {
             (storeDescription, error) in
             if let error = error as NSError? {
