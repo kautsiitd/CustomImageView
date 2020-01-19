@@ -10,6 +10,8 @@ import UIKit
 import CoreData
 
 public class CustomImageView: UIImageView {
+    //FIXME: CIVImage issue between widget and mainApp
+    //model not from same context
     //MARK: Properties
     enum Source { case cache, core, remote }
     struct ImageData {
