@@ -11,7 +11,7 @@ import UIKit
 extension CustomImageView {
     func fetchRemoteImage(from urlString: String,
                           completion: @escaping (ImageData) -> Void) {
-        var imageData = ImageData(urlString: urlString, image: #imageLiteral(resourceName: "NoImage.png"), source: .remote)
+        var imageData = ImageData(urlString: urlString, image: noImage, source: .remote)
         guard let url = URL(string: urlString), url.isSafe() else {
             completion(imageData)
             return

@@ -20,6 +20,8 @@ public class CustomImageView: UIImageView {
         let source: Source
     }
     private var urlString = ""
+    let noImage = UIImage(named: "NoImage.png",
+                          in: Bundle(for: CustomImageView.self), with: nil)!
     
     //MARK: Elements
     private var loader: UIActivityIndicatorView!
@@ -61,7 +63,7 @@ extension CustomImageView {
     
     public func setImage(with urlString: String?) {
         guard let urlString = urlString else {
-            image = #imageLiteral(resourceName: "NoImage.png")
+            image = noImage
             return
         }
         self.urlString = urlString
