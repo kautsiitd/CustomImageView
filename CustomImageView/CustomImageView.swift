@@ -66,6 +66,7 @@ extension CustomImageView {
             image = noImage
             return
         }
+        image = nil
         self.urlString = urlString
         
         loader.startAnimating()
