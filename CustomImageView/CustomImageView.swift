@@ -30,6 +30,7 @@ public class CustomImageView: UIImageView {
     @IBInspectable var shouldPersist: Bool = false
     
     required init?(coder: NSCoder) {
+        let _ = CoreDataStack.shared
         super.init(coder: coder)
         setupLoader()
     }
