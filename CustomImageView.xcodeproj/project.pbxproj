@@ -10,6 +10,7 @@
 		6326888323D2E83700ED9E22 /* Core.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6326888223D2E83700ED9E22 /* Core.swift */; };
 		6326888623D2EAC900ED9E22 /* Remote.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6326888523D2EAC900ED9E22 /* Remote.swift */; };
 		6326888923D317EF00ED9E22 /* Cache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6326888823D317EF00ED9E22 /* Cache.swift */; };
+		63C7EC7823F0A62B007FF930 /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63C7EC7723F0A62B007FF930 /* Date.swift */; };
 		63DF508C23D09ADD009486D5 /* CustomImageView.h in Headers */ = {isa = PBXBuildFile; fileRef = 63DF508A23D09ADD009486D5 /* CustomImageView.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		63DF509323D09B85009486D5 /* CustomImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63DF509223D09B85009486D5 /* CustomImageView.swift */; };
 		63DF509523D09BB5009486D5 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63DF509423D09BB5009486D5 /* CoreDataStack.swift */; };
@@ -24,6 +25,7 @@
 		6326888223D2E83700ED9E22 /* Core.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Core.swift; sourceTree = "<group>"; };
 		6326888523D2EAC900ED9E22 /* Remote.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Remote.swift; sourceTree = "<group>"; };
 		6326888823D317EF00ED9E22 /* Cache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cache.swift; sourceTree = "<group>"; };
+		63C7EC7723F0A62B007FF930 /* Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
 		63DF508723D09ADD009486D5 /* CustomImageView.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CustomImageView.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		63DF508A23D09ADD009486D5 /* CustomImageView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CustomImageView.h; sourceTree = "<group>"; };
 		63DF508B23D09ADD009486D5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -110,6 +112,7 @@
 			children = (
 				63DF509823D09C5E009486D5 /* URL.swift */,
 				63DF50BB23D1681E009486D5 /* UIImage.swift */,
+				63C7EC7723F0A62B007FF930 /* Date.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -204,6 +207,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				63DF509323D09B85009486D5 /* CustomImageView.swift in Sources */,
+				63C7EC7823F0A62B007FF930 /* Date.swift in Sources */,
 				63DF50BC23D1681E009486D5 /* UIImage.swift in Sources */,
 				63DF509723D09C38009486D5 /* CIVImage.swift in Sources */,
 				6326888323D2E83700ED9E22 /* Core.swift in Sources */,

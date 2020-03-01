@@ -13,6 +13,7 @@ public class CIVImage: NSManagedObject {
     //MARK: Properties
     @NSManaged var urlString: String
     @NSManaged var data: NSData?
+    @NSManaged var persistanceDate: NSDate
     
     @nonobjc public class func fetchAll() -> NSFetchRequest<CIVImage> {
         let fetchRequest = NSFetchRequest<CIVImage>()

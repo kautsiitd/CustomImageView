@@ -33,12 +33,22 @@ extension CustomImageView {
         request.predicate = predicate
         request.fetchLimit = 1
         let context = CoreDataStack.shared.CIVContext
-        guard let coreImage = try? context.fetch(request).first,
+        if let coreImage = try? context.fetch(request).first,
+            !isExpired(coreImage),
             let coreImageData = coreImage.data as Data?,
-            let uiImage = UIImage(data: coreImageData) else {
-                return nil
+            let uiImage = UIImage(data: coreImageData) {
+                return uiImage
         }
-        return uiImage
+        return nil
+    }
+    
+    private func isExpired(_ civImage: CIVImage) -> Bool {
+        let date = civImage.persistanceDate as Date
+        if expirationTime != -1 && date.seconds(from: Date()) > expirationTime {
+            delete(civImage)
+            return true
+        }
+        return false
     }
     
     private func save(_ imageData: ImageData) {
@@ -46,6 +56,12 @@ extension CustomImageView {
         let coreImage = CIVImage(context: context)
         coreImage.urlString = imageData.urlString
         coreImage.data = imageData.image.pngData() as NSData?
+        coreImage.persistanceDate = Date() as NSDate
         try? context.save()
+    }
+    
+    private func delete(_ civImage: CIVImage) {
+        let context = CoreDataStack.shared.CIVContext
+        context.delete(civImage)
     }
 }

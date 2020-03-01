@@ -28,6 +28,7 @@ public class CustomImageView: UIImageView {
     
     //MARK:- IBInspectable
     @IBInspectable var shouldPersist: Bool = false
+    @IBInspectable var expirationTime: Int = 0
     
     required init?(coder: NSCoder) {
         let _ = CoreDataStack.shared
