@@ -25,7 +25,7 @@ extension CustomImageView {
             self.fetchRemoteImage(from: urlString, completion: {
                 imageData in
                 self.context.perform {
-                    self.save(imageData)
+                    self.add(imageData)
                     completion(imageData)
                 }
             })
@@ -55,9 +55,8 @@ extension CustomImageView {
         return false
     }
     
-    private func save(_ imageData: ImageData) {
+    private func add(_ imageData: ImageData) {
         CIVImage.insert(imageData, in: context)
-        try? context.save()
     }
     
     private func delete(_ civImage: CIVImage) {
