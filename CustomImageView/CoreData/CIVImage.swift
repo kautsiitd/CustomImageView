@@ -15,16 +15,22 @@ public class CIVImage: NSManagedObject {
     @NSManaged var data: NSData?
     @NSManaged var persistanceDate: NSDate
     
-    @nonobjc public class func fetchAll() -> NSFetchRequest<CIVImage> {
+    static func insert(_ imageData: ImageData, in context: NSManagedObjectContext) {
+        let civImage = CIVImage(context: context)
+        civImage.urlString = imageData.urlString
+        civImage.data = imageData.image.pngData() as NSData?
+        civImage.persistanceDate = Date() as NSDate
+    }
+    
+    @nonobjc public class func fetchAll(in context: NSManagedObjectContext) -> NSFetchRequest<CIVImage> {
         let fetchRequest = NSFetchRequest<CIVImage>()
-        let context = CoreDataStack.shared.persistentContainer.viewContext
         let entityDescription = NSEntityDescription.entity(forEntityName: "\(CIVImage.self)", in: context)
         fetchRequest.entity = entityDescription
         return fetchRequest
     }
     
-    @nonobjc public class func deleteAll() -> NSBatchDeleteRequest {
-        let fetchRequest = CIVImage.fetchAll()
+    @nonobjc public class func deleteAll(in context: NSManagedObjectContext) -> NSBatchDeleteRequest {
+        let fetchRequest = CIVImage.fetchAll(in: context)
         let deleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest as! NSFetchRequest<NSFetchRequestResult>)
         return deleteRequest
     }

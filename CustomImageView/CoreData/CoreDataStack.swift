@@ -37,16 +37,18 @@ class CoreDataStack {
     
     lazy var CIVContext: NSManagedObjectContext = {
         //FIXME: privateQueueConcurrencyType not working with deletion
-//        let context = NSManagedObjectContext(concurrencyType: .privateQueueConcurrencyType)
-//        context.parent = persistentContainer.viewContext
-//        return context
-        return persistentContainer.viewContext
+        let context = NSManagedObjectContext(concurrencyType: .privateQueueConcurrencyType)
+        context.persistentStoreCoordinator = persistentContainer.persistentStoreCoordinator
+        return context
     }()
 }
 
 extension CoreDataStack {
     func save() {
-        let context = persistentContainer.viewContext
-        if context.hasChanges { try? context.save() }
+        if CIVContext.hasChanges {
+            CIVContext.perform {
+                 try? self.CIVContext.save()
+            }
+        }
     }
 }

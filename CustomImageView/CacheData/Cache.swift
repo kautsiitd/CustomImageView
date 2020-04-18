@@ -16,10 +16,20 @@ extension CustomImageView {
             return
         }
         
-        fetchCoreImage(with: urlString, completion: {
-            imageData in
-            imageCache.setObject(imageData.image, forKey: urlString as NSString)
-            completion(imageData)
-        })
+        if shouldPersist {
+            context.perform {
+                self.fetchCoreImage(with: urlString, completion: {
+                    imageData in
+                    imageCache.setObject(imageData.image, forKey: urlString as NSString)
+                    completion(imageData)
+                })
+            }
+        } else {
+            fetchRemoteImage(from: urlString, completion: {
+                imageData in
+                imageCache.setObject(imageData.image, forKey: urlString as NSString)
+                completion(imageData)
+            })
+        }
     }
 }

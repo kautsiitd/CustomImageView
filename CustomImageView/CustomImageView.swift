@@ -9,16 +9,18 @@
 import UIKit
 import CoreData
 
+enum Source { case cache, core, remote }
+struct ImageData {
+    let urlString: String
+    var image: UIImage
+    let source: Source
+}
+
 public class CustomImageView: UIImageView {
     //FIXME: CIVImage issue between widget and mainApp
     //model not from same context
     //MARK: Properties
-    enum Source { case cache, core, remote }
-    struct ImageData {
-        let urlString: String
-        var image: UIImage
-        let source: Source
-    }
+    let context = CoreDataStack.shared.CIVContext
     private var urlString = ""
     let noImage = UIImage(named: "NoImage.png",
                           in: Bundle(for: CustomImageView.self), with: nil)!
@@ -54,8 +56,10 @@ extension CustomImageView {
     
     public static func clearOldData() {
         let context = CoreDataStack.shared.CIVContext
-        let imageDeleteRequest = CIVImage.deleteAll()
-        _ = try? context.execute(imageDeleteRequest)
+        context.perform {
+            let imageDeleteRequest = CIVImage.deleteAll(in: context)
+            _ = try? context.execute(imageDeleteRequest)
+        }
         imageCache.removeAllObjects()
     }
     
@@ -77,22 +81,23 @@ extension CustomImageView {
             guard let self = self else { return }
             self.fetchCacheImage(from: urlString, completion: {
                 imageData in
-                if imageData.urlString == self.urlString { self.setImage(imageData) }
+                if imageData.urlString == self.urlString {
+                    DispatchQueue.main.async {
+                        [weak self] in
+                        self?.setImage(imageData)
+                    }
+                }
             })
         }
     }
     
     private func setImage(_ imageData: ImageData) {
-        DispatchQueue.main.async {
-            [weak self] in
-            guard let self = self else { return }
-            self.loader.stopAnimating()
-            switch imageData.source {
-            case .cache:
-                self.image = imageData.image
-            default:
-                self.animate(image: imageData.image)
-            }
+        loader.stopAnimating()
+        switch imageData.source {
+        case .cache:
+            image = imageData.image
+        default:
+            animate(image: imageData.image)
         }
     }
     
