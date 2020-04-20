@@ -17,13 +17,14 @@ extension CustomImageView {
         }
         
         if shouldPersist {
-            context.perform {
-                self.fetchCoreImage(with: urlString, completion: {
+            CoreDataManager.performOnMain({
+                context in
+                self.fetchCoreImage(with: urlString, on: context, completion: {
                     imageData in
                     imageCache.setObject(imageData.image, forKey: urlString as NSString)
                     completion(imageData)
                 })
-            }
+            })
         } else {
             fetchRemoteImage(from: urlString, completion: {
                 imageData in

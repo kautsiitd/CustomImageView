@@ -10,9 +10,9 @@ import UIKit
 import CoreData
 
 extension CustomImageView {
-    func fetchCoreImage(with urlString: String,
+    func fetchCoreImage(with urlString: String, on context: NSManagedObjectContext,
                         completion: @escaping (ImageData) -> Void) {
-        if let coreImage = getCoreImage(with: urlString) {
+        if let coreImage = getCoreImage(with: urlString, on: context) {
             let imageData = ImageData(urlString: urlString,
                                       image: coreImage, source: .core)
             completion(imageData)
@@ -24,15 +24,14 @@ extension CustomImageView {
             guard let self = self else { return }
             self.fetchRemoteImage(from: urlString, completion: {
                 imageData in
-                self.context.perform {
-                    self.add(imageData)
-                    completion(imageData)
-                }
+                self.save(imageData, in: context)
+                completion(imageData)
             })
         }
     }
     
-    private func getCoreImage(with urlString: String) -> UIImage? {
+    private func getCoreImage(with urlString: String,
+                              on context: NSManagedObjectContext) -> UIImage? {
         let request = CIVImage.fetchAll(in: context)
         let predicate = NSPredicate(format: "urlString == %@", urlString)
         request.predicate = predicate
@@ -55,11 +54,19 @@ extension CustomImageView {
         return false
     }
     
-    private func add(_ imageData: ImageData) {
-        CIVImage.insert(imageData, in: context)
+    private func save(_ imageData: ImageData, in context: NSManagedObjectContext) {
+        CoreDataManager.performOnBackground({
+            context in
+            CIVImage.insert(imageData, in: context)
+            try? context.save()
+        })
     }
     
     private func delete(_ civImage: CIVImage) {
-        context.delete(civImage)
+        CoreDataManager.performOnBackground({
+            context in
+            context.delete(civImage)
+            try? context.save()
+        })
     }
 }
