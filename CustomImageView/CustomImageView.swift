@@ -20,6 +20,7 @@ public class CustomImageView: UIImageView {
     //FIXME: CIVImage issue between widget and mainApp
     //model not from same context
     //MARK: Properties
+    static public let shared = CustomImageView()
     private var urlString = ""
     let noImage = UIImage(named: "NoImage.png",
                           in: Bundle(for: CustomImageView.self), with: nil)!
@@ -30,6 +31,10 @@ public class CustomImageView: UIImageView {
     //MARK:- IBInspectable
     @IBInspectable var shouldPersist: Bool = false
     @IBInspectable var expirationTime: Int = 0
+    
+    private init() {
+        super.init(frame: CGRect.zero)
+    }
     
     required init?(coder: NSCoder) {
         let _ = CoreDataManager.shared
@@ -85,7 +90,10 @@ extension CustomImageView {
             })
         }
     }
-    
+}
+
+//MARK:- Helpers
+extension CustomImageView {
     private func setImage(_ imageData: ImageData) {
         loader.stopAnimating()
         switch imageData.source {
