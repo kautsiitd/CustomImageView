@@ -17,6 +17,8 @@ class CoreDataManager {
     static let shared = CoreDataManager()
     private init() {
         imageCache.countLimit = 40
+        let request = CIVImage.fetchAll()
+        _ = try? privateContext.fetch(request)
     }
     
     private lazy var managedObjectModel: NSManagedObjectModel = {
@@ -35,17 +37,28 @@ class CoreDataManager {
         })
         return container
     }()
+    
+    lazy var privateContext: NSManagedObjectContext = {
+        let context = NSManagedObjectContext(concurrencyType: .privateQueueConcurrencyType)
+        context.persistentStoreCoordinator = container.persistentStoreCoordinator
+        return context
+    }()
 }
 
-//MARK:- Available
+//MARK:- Available Functions
 extension CoreDataManager {
-    /// For Writing to Disk in PrivateConcurrencyType
-    static func performOnBackground(_ block: @escaping (NSManagedObjectContext) -> Void) {
-        CoreDataManager.shared.container.performBackgroundTask(block)
+    func saveAllData() {
+        privateContext.perform {
+            if self.privateContext.hasChanges {
+                try? self.privateContext.save()
+            }
+        }
     }
-    /// For Writing into Main Context, Take care of async execution in block as context is MainConcurrencyType
-    static func performOnMain(_ block: @escaping (NSManagedObjectContext) -> Void) {
-        block(CoreDataManager.shared.container.viewContext)
+    
+    func deleteOldData() {
+        privateContext.perform {
+            let imageDeleteRequest = CIVImage.deleteAll()
+            _ = try? self.privateContext.execute(imageDeleteRequest)
+        }
     }
-
 }

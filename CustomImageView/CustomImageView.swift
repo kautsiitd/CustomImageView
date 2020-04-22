@@ -20,10 +20,14 @@ public class CustomImageView: UIImageView {
     //FIXME: CIVImage issue between widget and mainApp
     //model not from same context
     //MARK: Properties
-    static public let shared = CustomImageView()
     private var urlString = ""
     let noImage = UIImage(named: "NoImage.png",
                           in: Bundle(for: CustomImageView.self), with: nil)!
+    let context: NSManagedObjectContext = {
+        let context = NSManagedObjectContext(concurrencyType: .privateQueueConcurrencyType)
+        context.parent = CoreDataManager.shared.privateContext
+        return context
+    }()
     
     //MARK: Elements
     private var loader: UIActivityIndicatorView!
@@ -31,10 +35,6 @@ public class CustomImageView: UIImageView {
     //MARK:- IBInspectable
     @IBInspectable var shouldPersist: Bool = false
     @IBInspectable var expirationTime: Int = 0
-    
-    private init() {
-        super.init(frame: CGRect.zero)
-    }
     
     required init?(coder: NSCoder) {
         let _ = CoreDataManager.shared
@@ -54,12 +54,13 @@ public class CustomImageView: UIImageView {
 
 //MARK:- Available Functions
 extension CustomImageView {
+    public static func saveAllData() {
+        CoreDataManager.shared.saveAllData()
+        imageCache.removeAllObjects()
+    }
+    
     public static func clearOldData() {
-        CoreDataManager.performOnBackground({
-            context in
-            let imageDeleteRequest = CIVImage.deleteAll(in: context)
-            _ = try? context.execute(imageDeleteRequest)
-        })
+        CoreDataManager.shared.deleteOldData()
         imageCache.removeAllObjects()
     }
     

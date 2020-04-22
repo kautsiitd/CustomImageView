@@ -22,15 +22,12 @@ public class CIVImage: NSManagedObject {
         civImage.persistanceDate = Date() as NSDate
     }
     
-    @nonobjc public class func fetchAll(in context: NSManagedObjectContext) -> NSFetchRequest<CIVImage> {
-        let fetchRequest = NSFetchRequest<CIVImage>()
-        let entityDescription = NSEntityDescription.entity(forEntityName: "\(CIVImage.self)", in: context)
-        fetchRequest.entity = entityDescription
-        return fetchRequest
+    @nonobjc public class func fetchAll() -> NSFetchRequest<CIVImage> {
+        return NSFetchRequest<CIVImage>(entityName: "\(CIVImage.self)")
     }
     
-    @nonobjc public class func deleteAll(in context: NSManagedObjectContext) -> NSBatchDeleteRequest {
-        let fetchRequest = CIVImage.fetchAll(in: context)
+    @nonobjc public class func deleteAll() -> NSBatchDeleteRequest {
+        let fetchRequest = fetchAll()
         let deleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest as! NSFetchRequest<NSFetchRequestResult>)
         return deleteRequest
     }

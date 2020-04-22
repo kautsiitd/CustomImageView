@@ -10,9 +10,9 @@ import UIKit
 import CoreData
 
 extension CustomImageView {
-    func fetchCoreImage(with urlString: String, on context: NSManagedObjectContext,
+    func fetchCoreImage(with urlString: String,
                         completion: @escaping (ImageData) -> Void) {
-        if let coreImage = getCoreImage(with: urlString, on: context) {
+        if let coreImage = getCoreImage(with: urlString) {
             let imageData = ImageData(urlString: urlString,
                                       image: coreImage, source: .core)
             completion(imageData)
@@ -24,15 +24,14 @@ extension CustomImageView {
             guard let self = self else { return }
             self.fetchRemoteImage(from: urlString, completion: {
                 imageData in
-                self.save(imageData, in: context)
+                self.save(imageData)
                 completion(imageData)
             })
         }
     }
     
-    private func getCoreImage(with urlString: String,
-                              on context: NSManagedObjectContext) -> UIImage? {
-        let request = CIVImage.fetchAll(in: context)
+    private func getCoreImage(with urlString: String) -> UIImage? {
+        let request = CIVImage.fetchAll()
         let predicate = NSPredicate(format: "urlString == %@", urlString)
         request.predicate = predicate
         request.fetchLimit = 1
@@ -54,19 +53,17 @@ extension CustomImageView {
         return false
     }
     
-    private func save(_ imageData: ImageData, in context: NSManagedObjectContext) {
-        CoreDataManager.performOnBackground({
-            context in
-            CIVImage.insert(imageData, in: context)
-            try? context.save()
-        })
+    private func save(_ imageData: ImageData) {
+        context.perform {
+            CIVImage.insert(imageData, in: self.context)
+            try? self.context.save()
+        }
     }
     
     private func delete(_ civImage: CIVImage) {
-        CoreDataManager.performOnBackground({
-            context in
-            context.delete(civImage)
-            try? context.save()
-        })
+        context.perform {
+            self.context.delete(civImage)
+            try? self.context.save()
+        }
     }
 }
